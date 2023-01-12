@@ -13,3 +13,9 @@ fn main() {
     }
 
 }
+
+enum Currency {
+    USD(f32),
+    EUR(f32),
+    GBP(f32),
+}
