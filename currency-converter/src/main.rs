@@ -1,21 +1,25 @@
 use std::env;
 use std::io::{self, Write};
+use std::error::Error;
 
 fn main() {
-    println!("Choose your currency !");
-    let mut user_input = String::new();
-    
-    match io::stdin().read_line(&mut user_input) {
-        Ok(_) => {
-            println!("Vous avez choisi : {user_input}");
-        }
-        Err(error) => println!("error: {error}"),
-    }
+    let args: Vec<String> = env::args().collect();
 
 }
 
-enum Currency {
-    USD(f32),
-    EUR(f32),
-    GBP(f32),
+struct Config {
+    from: f32,
+    to: f32,
+    amount: f32,
+}
+
+impl Config {
+    fn new(args: &[String]) -> Result<Config, &'static str> {
+        if args.len() < 4 {
+            return Err("Not enough args");
+        }
+        let from = args[1].clone();
+        let to= args[2].clone();
+        let amount= args[3].clone();
+    }
 }
